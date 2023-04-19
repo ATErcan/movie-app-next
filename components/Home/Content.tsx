@@ -3,12 +3,12 @@ import { imageOptimizer } from "next/dist/server/image-optimizer";
 import { imageConfigDefault } from "next/dist/shared/lib/image-config";
 import Image from "next/image";
 
-interface Props {
+interface IContent {
   item: Content;
   plusJakartaSans: NextFontWithVariable;
 }
 
-const Content = ({ item, plusJakartaSans }: Props) => {
+const Content = ({ item, plusJakartaSans }: IContent) => {
   return (
     <div className="flex flex-col sm:flex-row items-center px-2 py-4 gap-4 sm:w-3/4 m-auto">
       <Image
