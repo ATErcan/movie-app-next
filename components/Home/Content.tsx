@@ -1,6 +1,4 @@
 import { NextFontWithVariable } from "next/dist/compiled/@next/font";
-import { imageOptimizer } from "next/dist/server/image-optimizer";
-import { imageConfigDefault } from "next/dist/shared/lib/image-config";
 import Image from "next/image";
 
 interface IContent {

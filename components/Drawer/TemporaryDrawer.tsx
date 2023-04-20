@@ -11,6 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ResponsiveAppBar from "./ResponsiveAppBar";
 
 import { data as drawerData } from "./drawerData";
+import Link from "next/link";
 
 const TemporaryDrawer = () => {
   const [state, setState] = useState(false);
@@ -39,10 +40,12 @@ const TemporaryDrawer = () => {
       <List>
         {drawerData.map((item) => (
           <ListItem key={item.id} disablePadding>
-            <ListItemButton className="hover:bg-neutral-800">
-              <ListItemIcon className="text-white">{<item.icon className="text-xl"/>}</ListItemIcon>
-              <ListItemText primary={item.name} />
-            </ListItemButton>
+            <Link href={item.path} className="w-full">
+              <ListItemButton className="hover:bg-neutral-800">
+                <ListItemIcon className="text-white">{<item.icon className="text-xl"/>}</ListItemIcon>
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
