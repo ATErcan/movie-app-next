@@ -1,5 +1,7 @@
+import MovieCarousel from "@/components/Movies/MovieCarousel";
+
 const Movies = () => {
-  return <h1>MOVIES</h1>
+  return <MovieCarousel />
 }
 
 export default Movies;
