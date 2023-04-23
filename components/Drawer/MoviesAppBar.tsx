@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,13 +18,13 @@ import { BiMenu } from "react-icons/bi";
 const settings = ["Logout"];
 
 interface IAppBar {
-  toggleDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void;
+  toggleDrawer: (
+    open: boolean
+  ) => (event: React.KeyboardEvent | React.MouseEvent) => void;
 }
 
-const ResponsiveAppBar = ({ toggleDrawer }: IAppBar) => {
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(
-    null
-  );
+const MoviesAppBar = ({ toggleDrawer }: IAppBar) => {
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -35,50 +35,12 @@ const ResponsiveAppBar = ({ toggleDrawer }: IAppBar) => {
   };
 
   return (
-    <AppBar position="static" className="bg-neutral-950 flex flex-row">
+    <AppBar position="absolute" className="bg-transparent flex flex-row left-0 right-0 shadow-none">
       <Button className="text-white p-0" onClick={toggleDrawer(true)}>
         <BiMenu className="text-3xl hover:opacity-90" />
       </Button>
-      <Container maxWidth={false} style={{maxWidth: '2000px'}} className="mr-0">
-        <Toolbar disableGutters className="flex justify-between">
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-            className="mx-0"
-          >
-            {`</aTe>MDB`}
-          </Typography>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-            className="mx-0"
-          >
-            {`</aTe>MDB`}
-          </Typography>
-
+      <Container maxWidth="xl" className="mr-0">
+        <Toolbar disableGutters className="flex justify-end">
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -112,5 +74,5 @@ const ResponsiveAppBar = ({ toggleDrawer }: IAppBar) => {
       </Container>
     </AppBar>
   );
-}
-export default ResponsiveAppBar;
+};
+export default MoviesAppBar;

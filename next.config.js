@@ -10,6 +10,11 @@ const nextConfig = {
         hostname: "img.freepik.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+        pathname: "/**",
+      },
     ],
     deviceSizes: [500, 1024, 1280],
     imageSizes: [100, 150, 200],
