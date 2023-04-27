@@ -11,3 +11,10 @@ type Drawer = {
   path: string;
   icon: IconType;
 }
+
+type UserInfo = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+};

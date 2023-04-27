@@ -1,5 +1,7 @@
 import "./globals.css";
-import SupabaseProvider from "./supabase-provider";
+import {SupabaseProvider} from "../components/Supabase/supabase-provider";
+import AuthProvider from "@/components/Supabase/auth-provider";
+import ToasterProvider from "@/components/Toast/ToasterProvider";
 
 export const metadata = {
   title: "aTe MDB",
@@ -14,9 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* <SupabaseProvider> */}
-        {children}
-        {/* </SupabaseProvider> */}
+        <SupabaseProvider>
+          <AuthProvider>
+            <ToasterProvider />
+            {children}
+          </AuthProvider>
+        </SupabaseProvider>
       </body>
     </html>
   );

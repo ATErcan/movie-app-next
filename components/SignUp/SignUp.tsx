@@ -1,7 +1,6 @@
 "use client";
 
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
@@ -10,33 +9,51 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-
-const Copyright = (props: any) => {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        atercan
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
+import React, { useState } from "react";
+import { useSupabase } from "../Supabase/supabase-provider";
+import LoadingBtn from "../UI/LoadingBtn";
+import { toastError } from "../Toast/ToastNotify";
 
 const SignUp = () => {
+  const { supabase } = useSupabase();
+  const [formValues, setFormValues] = useState<UserInfo>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormValues((prevFormValues) => {
+      return {
+        ...prevFormValues,
+        [e.target.name]: e.target.value
+      }
+    });
+  } 
+  const signUpWithEmail = async (userInfo: UserInfo) => {
+    setLoading(true);
+    const { error } = await supabase.auth.signUp({
+      email: userInfo.email,
+      password: userInfo.password,
+      options: {
+        data: { firstName: userInfo.firstName, lastName: userInfo.lastName },
+      },
+    });
+
+    if (error) {
+      toastError(error.message);
+    }
+    else {
+      // toastSuccess("Signed Up Successfully!")
+    }
+    setLoading(false);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    signUpWithEmail(formValues);
   };
 
   return (
@@ -67,6 +84,8 @@ const SignUp = () => {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={handleChange}
+                value={formValues.firstName}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -77,6 +96,8 @@ const SignUp = () => {
                 label="Last Name"
                 name="lastName"
                 autoComplete="family-name"
+                onChange={handleChange}
+                value={formValues.lastName}
               />
             </Grid>
             <Grid item xs={12}>
@@ -87,6 +108,8 @@ const SignUp = () => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={handleChange}
+                value={formValues.email}
               />
             </Grid>
             <Grid item xs={12}>
@@ -98,18 +121,21 @@ const SignUp = () => {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                onChange={handleChange}
+                value={formValues.password}
               />
             </Grid>
           </Grid>
-          <Button
+          <LoadingBtn
             type="submit"
-            fullWidth
+            fullWidth={true}
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            className="bg-blue-700"
+            style={{ mt: 3, mb: 2 }}
+            classes="bg-blue-700"
+            loading={loading}
           >
             Sign Up
-          </Button>
+          </LoadingBtn>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
@@ -119,7 +145,6 @@ const SignUp = () => {
           </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 5 }} />
     </Container>
   );
 };
