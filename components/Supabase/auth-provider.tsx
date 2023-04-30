@@ -4,7 +4,6 @@ import { createContext, useEffect, useState, useContext } from "react";
 import { User } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { useSupabase } from "./supabase-provider";
-import { getCurrentUser } from "./supabase";
 
 type UserContext = {
   user: User | null;
@@ -17,13 +16,15 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
-  const currentUser = () => {
-    getCurrentUser()
-      .then((data) => {
-        console.log(data);
-        setUser(data);
-      })
-      .catch((error) => console.log(error));
+  const currentUser = async () => {
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -39,7 +40,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       subscription.unsubscribe();
     };
   }, [router, supabase]);
-console.log(user);
 
   return (
     <Context.Provider value={{ user }}>

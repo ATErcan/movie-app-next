@@ -3,17 +3,17 @@ import LoadingButton from "@mui/lab/LoadingButton";
 interface ILoadingBtn {
   children: React.ReactNode;
   loading: boolean;
-  classes: string;
+  className?: string;
   type: "button" | "submit" | "reset";
-  variant: "text" | "outlined" | "contained";
-  style: Object;
-  fullWidth: boolean;
+  variant?: "text" | "outlined" | "contained";
+  style?: Object;
+  fullWidth?: boolean;
 }
 
 const LoadingBtn: React.FC<ILoadingBtn> = ({
   children,
   loading,
-  classes,
+  className,
   type,
   variant,
   style,
@@ -23,7 +23,7 @@ const LoadingBtn: React.FC<ILoadingBtn> = ({
     <LoadingButton
       loading={loading}
       disabled={loading}
-      className={classes}
+      className={className}
       variant={variant}
       type={type}
       sx={style}

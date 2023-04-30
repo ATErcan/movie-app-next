@@ -14,31 +14,11 @@ type signUpFn = (
 
 type signOutFn = (setLoading: (loading: boolean) => void) => void;
 
-export const signIn: signUpFn = async (userInfo, setLoading) => {
-  setLoading(true);
-  const { error } = await supabase.auth.signInWithPassword({
-    email: "example@email.com",
-    password: "example-password",
-  });
 
-  if (error) window.alert(error.message);
-  setLoading(false);
-}
 
-export const signOut: signOutFn = async (setLoading) => {
-  setLoading(true);
-  const { error } = await supabase.auth.signOut();
-  if(error) window.alert(error.message);
-  setLoading(false);
-};
 
-export const getCurrentUser = async () => {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  console.log(user);
-  return user;
-}
+
+
 
 export const getUserInfo = async () => {
   const {
