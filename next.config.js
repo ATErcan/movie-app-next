@@ -15,6 +15,11 @@ const nextConfig = {
         hostname: "source.unsplash.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "image.tmdb.org",
+        pathname: "/**",
+      },
     ],
     deviceSizes: [500, 1024, 1280],
     imageSizes: [100, 150, 200],

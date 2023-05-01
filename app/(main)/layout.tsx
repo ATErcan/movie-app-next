@@ -1,4 +1,4 @@
-import TemporaryDrawer from "@/components/Drawer/TemporaryDrawer";
+import TemporaryDrawer from "@/app/components/Drawer/TemporaryDrawer";
 
 export const metadata = {
   title: "aTe MDB",

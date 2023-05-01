@@ -1,7 +1,7 @@
 import "./globals.css";
-import {SupabaseProvider} from "../components/Supabase/supabase-provider";
-import AuthProvider from "@/components/Supabase/auth-provider";
-import ToasterProvider from "@/components/Toast/ToasterProvider";
+import {SupabaseProvider} from "./components/Supabase/supabase-provider";
+import AuthProvider from "@/app/components/Supabase/auth-provider";
+import ToasterProvider from "@/app/components/Toast/ToasterProvider";
 
 export const metadata = {
   title: "aTe MDB",

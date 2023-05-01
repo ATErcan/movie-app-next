@@ -1,4 +1,4 @@
-import MoviesDrawer from "@/components/Drawer/MoviesDrawer";
+import MoviesDrawer from "@/app/components/Drawer/MoviesDrawer";
 
 export const metadata = {
   title: "aTe MDB",
