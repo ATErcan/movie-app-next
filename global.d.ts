@@ -40,3 +40,8 @@ type MovieData = {
   vote_average: number;
   vote_count: number;
 }
+
+type GenreData = {
+  id: number;
+  name: string;
+}

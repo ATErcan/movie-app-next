@@ -48,8 +48,6 @@ const ResponsiveAppBar = ({ toggleDrawer }: IAppBar) => {
     }
   };
 
-  console.log(user);
-
   return (
     <AppBar position="static" className="bg-neutral-950 flex flex-row">
       <Button className="text-white p-0" onClick={toggleDrawer(true)}>
