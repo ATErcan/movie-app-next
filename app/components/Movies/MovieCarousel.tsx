@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 
 function Item({ movie, genres }: { movie: MovieData, genres: GenreData[] }) {
-  const genresArray = ["Action", "Fantasy", "Adventure"];
-
   const genreNames = movie.genre_ids.map(id => {
     const genre = genres.find(genre => genre.id === id);
     return genre;
@@ -68,8 +66,6 @@ const MovieCarousel = () => {
   }, []);
 
   const items = movies.filter((movie, i) => i < 5);
-
-  console.log("rendered");
 
   return (
     <Carousel

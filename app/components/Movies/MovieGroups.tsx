@@ -21,8 +21,16 @@ const MovieGroups: React.FC<IGroup> = ({ group }) => {
   
   const displayPreview = (id: string) => {
     const movie = movieArr?.filter(movie => movie.id.toString() === id);
-    setMoviePreview(movie[0]);
-    setShowPreview(prevShow => !prevShow);
+    if(moviePreview === null){
+      setMoviePreview(movie[0]);
+      setShowPreview(true);
+    } else if (moviePreview.id === movie[0].id) {
+      setShowPreview(false);
+      setMoviePreview(null);
+    } else {
+      setMoviePreview(movie[0]);
+      setShowPreview(true);
+    }
   }
   const movies = movieArr.map(movie => <MovieCard key={movie.id} movie={movie} displayPreview={displayPreview} />)
 
@@ -34,7 +42,7 @@ const MovieGroups: React.FC<IGroup> = ({ group }) => {
       <div className="flex gap-x-4 overflow-y-hidden overflow-x-scroll" onClick={(e: React.MouseEvent<HTMLElement>) => console.log(e.target)}>
         {movies}
       </div>
-      {showPreview && <Preview movie={moviePreview} />}
+      <Preview movie={moviePreview} showPreview={showPreview} />
     </>
   )
 }
