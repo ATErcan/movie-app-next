@@ -17,6 +17,10 @@ import { BiMenu } from "react-icons/bi";
 import { useAuth } from "../Supabase/auth-provider";
 import { useSupabase } from "../Supabase/supabase-provider";
 import { toastError, toastSuccess } from "../Toast/ToastNotify";
+import {
+  useSelectedLayoutSegment,
+  useSelectedLayoutSegments,
+} from "next/navigation";
 
 const settings = ["Logout"];
 
@@ -30,6 +34,7 @@ const MoviesAppBar = ({ toggleDrawer }: IAppBar) => {
   const { user } = useAuth();
   const { supabase } = useSupabase();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const segment = useSelectedLayoutSegments();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -50,54 +55,93 @@ const MoviesAppBar = ({ toggleDrawer }: IAppBar) => {
 
   return (
     <AppBar
-      position="absolute"
-      className="bg-transparent flex flex-row left-0 right-0 shadow-none"
+      position={`${segment.length > 1 ? "static" : "absolute"}`}
+      className={`${
+        segment.length > 1 ? "bg-neutral-950" : "bg-transparent"
+      } flex flex-row left-0 right-0 shadow-none`}
     >
       <Button className="text-white p-0" onClick={toggleDrawer(true)}>
         <BiMenu className="text-3xl hover:opacity-90" />
       </Button>
       <Container maxWidth="xl" className="mr-0">
-        <Toolbar disableGutters className="flex justify-end">
-          {user && (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={user.user_metadata.firstName[0]} src="/images/avatar.png" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+        <Toolbar disableGutters className={`flex ${segment.length > 1 ? "justify-between" : "justify-end"}`}>
+          {segment.length > 1 && (
+            <>
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
                 }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
+                className="mx-0"
               >
-                {settings.map((setting) => (
-                  <MenuItem
-                    key={setting}
-                    onClick={handleCloseUserMenu}
-                    disableGutters
-                  >
-                    <Typography
-                      textAlign="center"
-                      className="px-4"
-                      onClick={signOut}
-                    >
-                      {setting}
-                    </Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
+                {`</aTe>MDB`}
+              </Typography>
+              <Typography
+                variant="h5"
+                noWrap
+                component="a"
+                href=""
+                sx={{
+                  mr: 2,
+                  display: { xs: "flex", md: "none" },
+                  flexGrow: 1,
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+                className="mx-0"
+              >
+                {`</aTe>MDB`}
+              </Typography>
+            </>
+          )}
+          
+          {user && (
+            <div className="flex md:justify-end md:items-center md:gap-x-4 md:text-xl">
+              {segment.length > 1 && <h2 className="hidden md:block cursor-default">{user.user_metadata.firstName}</h2>}
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt={user.user_metadata.firstName[0]} src="/images/avatar.png" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu} disableGutters>
+                      <Typography textAlign="center" className="px-4" onClick={signOut}>                      
+                          {setting}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </Box>
+            </div>
           )}
         </Toolbar>
       </Container>

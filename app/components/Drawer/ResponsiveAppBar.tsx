@@ -97,8 +97,8 @@ const ResponsiveAppBar = ({ toggleDrawer }: IAppBar) => {
           </Typography>
 
           {user && (
-            <div className="hidden md:flex md:justify-end md:items-center md:gap-x-4 md:text-xl">
-              <h2 className="cursor-default">{user.user_metadata.firstName}</h2>
+            <div className="flex md:justify-end md:items-center md:gap-x-4 md:text-xl">
+              <h2 className="hidden md:block cursor-default">{user.user_metadata.firstName}</h2>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
