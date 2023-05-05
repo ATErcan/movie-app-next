@@ -1,6 +1,7 @@
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { data } from "./contentData";
 import Content from "./Content";
+import DiveInBtn from "./DiveInBtn";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -24,9 +25,7 @@ const Homepage = () => {
           our platform and discover the world through your windows. Sit back and
           enjoy watching.
         </p>
-        <button className="bg-blue-700 text-white mt-4 py-2 px-8 rounded-2xl font-bold shadow hover:bg-blue-900">
-          Dive In
-        </button>
+        <DiveInBtn />
       </header>
 
       <div className="flex flex-col justify-center bg-gray-100 p-4 w-full lg:w-1/2 min-h-screen">

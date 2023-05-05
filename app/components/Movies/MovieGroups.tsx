@@ -34,12 +34,9 @@ const MovieGroups: React.FC<IGroup> = ({ group }) => {
   }
   const movies = movieArr.map(movie => <MovieCard key={movie.id} movie={movie} displayPreview={displayPreview} />)
 
-
-  console.log('group')
-
   return (
     <>
-      <div className="flex gap-x-4 overflow-y-hidden overflow-x-scroll" onClick={(e: React.MouseEvent<HTMLElement>) => console.log(e.target)}>
+      <div className="flex gap-x-4 overflow-y-hidden overflow-x-scroll">
         {movies}
       </div>
       <Preview movie={moviePreview} showPreview={showPreview} />
