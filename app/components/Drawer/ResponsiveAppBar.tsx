@@ -17,7 +17,6 @@ import { BiMenu } from "react-icons/bi";
 import { useAuth } from "../Supabase/auth-provider";
 import { useSupabase } from "../Supabase/supabase-provider";
 import { toastError, toastSuccess } from "../Toast/ToastNotify";
-import LoadingBtn from "../UI/LoadingBtn";
 
 const settings = ["Logout"];
 

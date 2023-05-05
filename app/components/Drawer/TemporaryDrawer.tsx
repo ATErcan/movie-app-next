@@ -55,7 +55,7 @@ const TemporaryDrawer = () => {
   return (
     <div>
       <Fragment>
-          <ResponsiveAppBar toggleDrawer={toggleDrawer} />
+        <ResponsiveAppBar toggleDrawer={toggleDrawer} />
         <Drawer anchor="left" open={state} onClose={toggleDrawer(false)}>
           {list()}
         </Drawer>

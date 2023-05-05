@@ -14,6 +14,7 @@ const Content = ({ item, plusJakartaSans }: IContent) => {
         alt={item.alt}
         width={150}
         height={60}
+        className="w-2/4 sm:w-2/5 md:w-1/3 h-auto"
       />
       <p
         className={`${plusJakartaSans.variable} font-sans text-justify max-w-sm text-xs sm:text-base lg:text-sm xl:text-base`}

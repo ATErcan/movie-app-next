@@ -1,19 +1,31 @@
-'use client';
+"use client";
 
 import { baseImgUrl } from "@/assets/tmdb";
 import Image from "next/image";
 import { useState } from "react";
 
-const Card = ({ children, movie, clickEvent }: { children: React.ReactNode, movie: MovieData, clickEvent: (id: string) => void }) => {
+const Card = ({
+  children,
+  movie,
+  clickEvent,
+  classes,
+  animation,
+}: {
+  children: (showTitle: boolean) => React.ReactElement;
+  movie: MovieData;
+  clickEvent: (id: string) => void;
+  classes?: string;
+  animation?: { in: string; out: string };
+}) => {
   const [showTitle, setShowTitle] = useState(false);
 
   const handleClick = () => {
-    clickEvent(movie.id.toString())
-  }
+    clickEvent(movie.id.toString());
+  };
 
   return (
     <div
-      className="flex flex-col grow-0 shrink-0 basis-auto relative w-48 h-auto cursor-pointer hover:opacity-70 hover:scale-110 md:w-60 xl:w-64"
+      className={`flex flex-col grow-0 shrink-0 basis-auto relative w-48 h-auto cursor-pointer ${classes} md:w-60 xl:w-64`}
       onMouseOver={() => setShowTitle(true)}
       onMouseOut={() => setShowTitle(false)}
       onClick={handleClick}
@@ -25,7 +37,7 @@ const Card = ({ children, movie, clickEvent }: { children: React.ReactNode, movi
         height={300}
         className="w-full"
       />
-      {showTitle && children}
+      {children(showTitle)}
     </div>
   );
 };

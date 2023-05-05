@@ -24,6 +24,21 @@ module.exports = {
         "90v": "90vh",
         "100v": "100vh",
       },
+      keyframes: {
+        titleIn: {
+          '0%': { opacity: 0, transform: 'translateY(100%)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+        titleOut: {
+          '0%': { opacity: 1, transform: 'translateY(0)' },
+          '100%': { opacity: 0, transform: 'translateY(100%)' },
+        },
+      },
+      animation: {
+        titleIn: 'titleIn .3s linear 1',
+        titleOut: 'titleOut .3s linear 1',
+      }
+
     },
     screens: {
       "xxs": "350px",
