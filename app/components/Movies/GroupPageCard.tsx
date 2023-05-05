@@ -9,9 +9,9 @@ const GroupPageCard = ({ movie }: { movie: MovieData }) => {
   return (
     <Card movie={movie} clickEvent={handleClick}>
       {() => (
-        <div className="flex flex-col gap-y-4 p-4 bg-black/50 absolute bottom-0 ">
-          <h3 className="sm:text-xl lg:text-2xl"> {movie.title} </h3>
-          <p className="text-xs overflow-y-auto sm:text-sm 2xl:text-base">
+        <div className="hidden md:flex md:flex-col gap-y-2 p-2 bg-black/50 absolute bottom-0">
+          <h3 className="md:text-base xl:text-xl"> {movie.title} </h3>
+          <p className="text-xs leading-snug overflow-y-auto xl:text-sm 2xl:text-base">
             {movie.overview}
           </p>
         </div>        

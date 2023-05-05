@@ -16,7 +16,7 @@ const NavigationBtns = ({
   return (
     <div className="flex justify-center gap-x-4 mt-8 mb-4">
       <button
-        className="bg-none border-4 border-gray-700 rounded-md text-white text-base py-2 px-3 w-36 cursor-pointer enabled:hover:opacity-70 disabled:opacity-50 sm:py-3 sm:px-4 sm:w-40 sm:text-xl"
+        className="bg-none border-4 border-gray-700 rounded-md text-white text-base py-2 px-3 w-36 cursor-pointer enabled:hover:opacity-70 disabled:opacity-50 disabled:cursor-default sm:py-3 sm:px-4 sm:w-40 sm:text-xl"
         onClick={() => {
           setPage((prevPage) => (prevPage -= 1))
         }}
@@ -25,7 +25,7 @@ const NavigationBtns = ({
         {`<<`} Previous
       </button>
       <button
-        className="bg-none border-4 border-gray-700 rounded-md text-white text-base py-2 px-3 w-36 cursor-pointer enabled:hover:opacity-70 disabled:opacity-50 sm:py-3 sm:px-4 sm:w-40 sm:text-xl"
+        className="bg-none border-4 border-gray-700 rounded-md text-white text-base py-2 px-3 w-36 cursor-pointer enabled:hover:opacity-70 disabled:opacity-50 disabled:cursor-default sm:py-3 sm:px-4 sm:w-40 sm:text-xl"
         onClick={() => {
           setPage((prevPage) => (prevPage += 1))
         }}
