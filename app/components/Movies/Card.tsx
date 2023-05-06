@@ -18,10 +18,15 @@ const Card = ({
   animation?: { in: string; out: string };
 }) => {
   const [showTitle, setShowTitle] = useState(false);
+  const [imgSrc, setImgSrc] = useState(`${baseImgUrl}${movie?.poster_path}`);
 
   const handleClick = () => {
     clickEvent(movie.id.toString());
   };
+
+  const handleError = () => {
+    setImgSrc("/images/no-movie.png")
+  }
 
   return (
     <div
@@ -31,11 +36,12 @@ const Card = ({
       onClick={handleClick}
     >
       <Image
-        src={`${baseImgUrl}${movie?.poster_path}`}
+        src={imgSrc}
         alt={movie?.original_title}
         width={200}
         height={300}
-        className="w-full"
+        className="w-full object-cover"
+        onError={handleError}
       />
       {children(showTitle)}
     </div>

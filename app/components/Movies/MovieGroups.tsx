@@ -2,13 +2,14 @@
 
 import { baseUrl, getData } from "@/assets/tmdb";
 import MovieCard from "./MovieCard";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Preview from "./Preview";
 
 const MovieGroups: React.FC<IGroup> = ({ group }) => {
   const [movieArr, setMovieArr] = useState<MovieData[] | []>([]);
   const [moviePreview, setMoviePreview] = useState<MovieData | null>(null);
   const [showPreview, setShowPreview] = useState(false);
+  const previewRef = useRef<HTMLDivElement>(null);
 
   const getMovies = async () => {
     const { results }: {results: MovieData[]} = await getData(`${baseUrl}movie/${group}?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&page=1`);
@@ -31,6 +32,12 @@ const MovieGroups: React.FC<IGroup> = ({ group }) => {
       setMoviePreview(movie[0]);
       setShowPreview(true);
     }
+    if(previewRef.current){
+      window.scrollTo({
+        top: previewRef.current.offsetTop - 100,
+        behavior: "smooth",
+      });
+    }
   }
   const movies = movieArr.map(movie => <MovieCard key={movie.id} movie={movie} displayPreview={displayPreview} />)
 
@@ -39,7 +46,7 @@ const MovieGroups: React.FC<IGroup> = ({ group }) => {
       <div className="flex gap-x-4 overflow-y-hidden overflow-x-scroll">
         {movies}
       </div>
-      <Preview movie={moviePreview} showPreview={showPreview} />
+      <Preview movie={moviePreview} showPreview={showPreview} previewRef={previewRef} />
     </>
   )
 }

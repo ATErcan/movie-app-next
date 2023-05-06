@@ -1,8 +1,8 @@
 import { baseImgUrl, baseUrl, getData } from "@/assets/tmdb";
 import Image from "next/image"
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 
-const Preview = ({ movie, showPreview }: { movie: MovieData | null, showPreview: boolean}) => {
+const Preview = ({ movie, showPreview, previewRef }: { movie: MovieData | null, showPreview: boolean, previewRef: RefObject<HTMLDivElement> }) => {
   const [genres, setGenres] = useState<GenreData[]>([]);
   
   useEffect(() => {
@@ -26,7 +26,7 @@ const Preview = ({ movie, showPreview }: { movie: MovieData | null, showPreview:
   ));
 
   return (
-    <div className={`relative mt-2 overflow-y-hidden ${showPreview ? "lg:h-70v 2xl:h-50v" : "h-0"} duration-200`}>
+    <div ref={previewRef} className={`relative mt-2 overflow-y-hidden ${showPreview ? "lg:h-70v 2xl:h-50v" : "h-0"} duration-200`}>
       <Image src={`${baseImgUrl}${movie?.backdrop_path}`} alt={`${movie?.original_title || "movie"}`} width={600} height={400} className="w-full lg:h-70v lg:object-cover 2xl:h-50v" />
       <div className="flex flex-col gap-y-4 p-4 bg-black text-white overflow-hidden w-full sm:bg-transparent sm:h-full sm:justify-center sm:gap-x-3 sm:absolute sm:z-10 sm:top-1/2 sm:transform sm:-translate-y-1/2 sm:bg-gradient-to-r sm:from-black/80 sm:to-black/20 sm:p-8 2xl:p-16">
         <ul className="flex flex-wrap gap-2 sm:gap-x-4">
