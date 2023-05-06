@@ -41,6 +41,14 @@ type MovieData = {
   vote_count: number;
 }
 
+type MovieResponse = {
+  page: number;
+  results: MovieData[];
+  total_pages: number;
+  total_results: number;
+}
+
+
 type GenreData = {
   id: number;
   name: string;
