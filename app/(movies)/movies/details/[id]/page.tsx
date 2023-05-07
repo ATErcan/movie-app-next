@@ -18,7 +18,6 @@ async function ServerComponent() {
 }
 
 const MovieDetails = async ({ params }: { params: { id: string } }) => {
-  console.log(params.id)
   const data = await ServerComponent();
 
   if(!data){

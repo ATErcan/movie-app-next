@@ -22,10 +22,6 @@ const Details = async ({ id }: { id: string }) => {
   const similar = getData(`${baseUrl}movie/${id}/similar?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&language=en-US`);
   const [data, results]: [data: MovieDetails, results: MovieResponse] = await Promise.all([details, similar])
 
-  /* const data: MovieDetails = await getData(`${baseUrl}movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`)
-  const { results }: { results: MovieData[] } = await getData(`${baseUrl}movie/${id}/similar?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&language=en-US`) */
-  // console.log(data)
-
   const companies = data.production_companies.map((company) => {
     return (
       <div key={company.id} className="grow-0 shrink-0 basis-36 flex flex-col items-center gap-y-2">
@@ -59,8 +55,8 @@ const Details = async ({ id }: { id: string }) => {
         <div className="flex flex-col gap-y-4 py-4 px-8 md:flex-row md:justify-between md:items-center xl:py-8">
           <div className="flex flex-col gap-y-1">
             <h1 className="text-3xl font-bold mb-1.5 lg:text-4xl"> {data.title} </h1>
-            <h3 className="text-sm font-normal text-white/70 md:text-sm"> {data.original_title}</h3>
-            <h3 className="text-sm font-normal text-white/70 md:text-sm"> {data.release_date}</h3>
+            <h3 className="text-sm font-normal text-white/70 md:text-sm"> {data.original_title} </h3>
+            <h3 className="text-sm font-normal text-white/70 md:text-sm"> {data.release_date} - {data.runtime} min. </h3>
           </div>
           <div className="flex gap-x-4 mb-2">
             <div className={`${roboto.className} flex flex-col items-center`}>
@@ -103,15 +99,15 @@ const Details = async ({ id }: { id: string }) => {
         </div>
 
         {/* Similar */}
-        <div className="px-4 mb-8 xl:p-0">
+        {results.results.length > 0 && <div className="px-4 mb-8 xl:p-0">
           <h3 className="text-2xl underline sm:text-3xl"> Similar Movies {`>`}</h3>
           <div className="flex gap-x-4 overflow-y-hidden overflow-x-auto py-4">
             {similarMovies}
           </div>
-        </div>
+        </div>}
 
         {/* GoBackBtn */}
-        <div>
+        <div className="px-4 xl:p-0">
           <GoBackBtn />
         </div>
       </div>

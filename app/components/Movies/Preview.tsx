@@ -2,6 +2,7 @@ import { baseImgUrl, baseUrl, getData } from "@/assets/tmdb";
 import Image from "next/image";
 import { RefObject, useEffect, useState } from "react";
 import Genres from "./Genres";
+import { useRouter } from "next/navigation";
 
 const Preview = ({
   movie,
@@ -13,6 +14,7 @@ const Preview = ({
   previewRef: RefObject<HTMLDivElement>;
 }) => {
   const [genres, setGenres] = useState<GenreData[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     getData(
@@ -26,15 +28,6 @@ const Preview = ({
     const genre = genres.find((genre) => genre.id === id);
     return genre;
   });
-
-  const genreList = genreNames?.map((genre) => (
-    <li
-      key={genre?.id}
-      className="px-3 py-2 bg-gray-500 bg-opacity-30 rounded-3xl text-xs sm:text-base sm:backdrop-blur-lg xl:text-xl xl:py-3 xl:px-4 2xl:text-2xl"
-    >
-      {genre?.name}
-    </li>
-  ));
 
   return (
     <div
@@ -63,7 +56,7 @@ const Preview = ({
         <p className="xs:text-xs sm:text-sm sm:w-4/6 md:w-3/5 xl:text-base xl:w-1/2 2xl:text-lg 2xl:w-2/5">
           {movie?.overview}
         </p>
-        <button className="bg-white text-black border-none rounded-2xl w-32 py-1 cursor-pointer hover:opacity-80 sm:py-1 sm:w-28 2xl:text-base">
+        <button className="bg-white text-black border-none rounded-2xl w-32 py-1 cursor-pointer hover:opacity-80 sm:py-1 sm:w-28 2xl:text-base" onClick={() => router.push(`/movies/details/${movie?.id}`)}>
           See Details
         </button>
       </div>

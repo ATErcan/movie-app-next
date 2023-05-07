@@ -1,9 +1,11 @@
+import { useRouter } from "next/navigation";
 import Card from "./Card";
 
 const GroupPageCard = ({ movie }: { movie: MovieData }) => {
+  const router = useRouter();
 
-  const handleClick = (id: string) => {
-    console.log("clicked")
+  const handleClick = () => {
+    router.push(`/movies/details/${movie.id}`)
   }
 
   return (

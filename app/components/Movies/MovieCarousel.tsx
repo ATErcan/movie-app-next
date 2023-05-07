@@ -6,21 +6,15 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import Genres from "./Genres";
+import { useRouter } from "next/navigation";
 
 function Item({ movie, genres }: { movie: MovieData, genres: GenreData[] }) {
+  const router = useRouter();
+
   const genreNames = movie.genre_ids.map(id => {
     const genre = genres.find(genre => genre.id === id);
     return genre;
   });
-
-  const genreList = genreNames.map((genre) => (
-    <li
-      key={genre?.id}
-      className="px-3 py-2 bg-gray-500 bg-opacity-30 rounded-3xl text-xs sm:text-base sm:backdrop-blur-lg xl:text-xl xl:py-3 xl:px-4 2xl:text-2xl"
-    >
-      {genre?.name}
-    </li>
-  ));
 
   return (
     <Paper className="relative sm:min-h-screen">
@@ -41,7 +35,7 @@ function Item({ movie, genres }: { movie: MovieData, genres: GenreData[] }) {
         <p className="max-w-max p-2 bg-yellow-500 font-bold text-gray-500 shadow sm:p-2.5 sm:text-xl xl:text-2xl 2xl:text-3xl">
           {movie.vote_average.toFixed(1)}
         </p>
-        <button className="bg-white text-black border-none rounded-2xl w-32 py-1 cursor-pointer hover:opacity-80 sm:py-1.5 sm:w-36 2xl:text-base">
+        <button className="bg-white text-black border-none rounded-2xl w-32 py-1 cursor-pointer hover:opacity-80 sm:py-1.5 sm:w-36 2xl:text-base" onClick={() => router.push(`/movies/details/${movie.id}`)}>
           See Details
         </button>
       </div>
