@@ -5,6 +5,7 @@ import { Paper } from "@mui/material";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
+import Genres from "./Genres";
 
 function Item({ movie, genres }: { movie: MovieData, genres: GenreData[] }) {
   const genreNames = movie.genre_ids.map(id => {
@@ -33,9 +34,7 @@ function Item({ movie, genres }: { movie: MovieData, genres: GenreData[] }) {
       </div>
 
       <div className="flex flex-col gap-y-4 p-4 bg-black text-white sm:absolute sm:top-1/2 sm:transform sm:-translate-y-1/2  sm:bg-transparent sm:p-8 xl:pl-16">
-        <div>
-          <ul className="flex flex-wrap gap-x-3 gap-y-2">{genreList}</ul>
-        </div>
+        <Genres genres={genreNames} containerStyle="gap-x-3 gap-y-2" itemStyle="px-3 py-2 bg-gray-500 bg-opacity-30 rounded-3xl text-xs sm:text-base sm:backdrop-blur-lg xl:text-xl xl:py-3 xl:px-4 2xl:text-2xl" />
         <h2 className="text-3xl sm:text-4xl xl:text-5xl 2xl:text-6xl">
           {movie.title}
         </h2>

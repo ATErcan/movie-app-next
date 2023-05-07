@@ -10,7 +10,6 @@ export const getData = async (url: string) => {
     return res.json();    
   } catch (error) {
     throw new Error(`Something went wrong: ${error}`);
-    
   }
 }
 

@@ -23,14 +23,14 @@ const MovieGroups: React.FC<IGroup> = ({ group }) => {
   const displayPreview = (id: string) => {
     const movie = movieArr?.filter(movie => movie.id.toString() === id);
     if(moviePreview === null){
-      setMoviePreview(movie[0]);
       setShowPreview(true);
+      setMoviePreview(movie[0]);
     } else if (moviePreview.id === movie[0].id) {
       setShowPreview(false);
       setMoviePreview(null);
     } else {
-      setMoviePreview(movie[0]);
       setShowPreview(true);
+      setMoviePreview(movie[0]);
     }
     if(previewRef.current){
       window.scrollTo({
@@ -39,6 +39,7 @@ const MovieGroups: React.FC<IGroup> = ({ group }) => {
       });
     }
   }
+
   const movies = movieArr.map(movie => <MovieCard key={movie.id} movie={movie} displayPreview={displayPreview} />)
 
   return (
