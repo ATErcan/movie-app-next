@@ -8,7 +8,6 @@ const Trailer = async ({ movie }: { movie: MovieDetails }) => {
     video.type === "Trailer" &&
     video.official
   )
-  console.log(officials);
 
   return (
     <div className="flex md:gap-x-1.5">

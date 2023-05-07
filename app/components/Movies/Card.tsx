@@ -9,13 +9,11 @@ const Card = ({
   movie,
   clickEvent,
   classes,
-  animation,
 }: {
   children: (showTitle: boolean) => React.ReactElement;
   movie: MovieData;
   clickEvent: (id: string) => void;
   classes?: string;
-  animation?: { in: string; out: string };
 }) => {
   const [showTitle, setShowTitle] = useState(false);
   const [imgSrc, setImgSrc] = useState(`${baseImgUrl}${movie?.poster_path}`);

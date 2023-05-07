@@ -1,4 +1,4 @@
-import { baseUrl } from "@/assets/tmdb"
+import { baseImgUrl, baseUrl } from "@/assets/tmdb"
 import { getData } from "@/assets/tmdb"
 import { Roboto } from "next/font/google"
 import { notFound } from "next/navigation"
@@ -6,6 +6,10 @@ import { AiFillStar } from "react-icons/ai"
 import { HiOutlineTrendingUp } from "react-icons/hi";
 import Trailer from "./Trailer"
 import Genres from "./Genres"
+import Image from "next/image"
+import MovieCast from "./MovieCast"
+import SimilarMoviesCard from "./SimilarMoviesCard"
+import GoBackBtn from "./GoBackBtn"
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -14,9 +18,37 @@ const roboto = Roboto({
 });
 
 const Details = async ({ id }: { id: string }) => {
-  const data: MovieDetails = await getData(`${baseUrl}movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`)
-  
+  const details = getData(`${baseUrl}movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`);
+  const similar = getData(`${baseUrl}movie/${id}/similar?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&language=en-US`);
+  const [data, results]: [data: MovieDetails, results: MovieResponse] = await Promise.all([details, similar])
+
+  /* const data: MovieDetails = await getData(`${baseUrl}movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`)
+  const { results }: { results: MovieData[] } = await getData(`${baseUrl}movie/${id}/similar?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&language=en-US`) */
   // console.log(data)
+
+  const companies = data.production_companies.map((company) => {
+    return (
+      <div key={company.id} className="grow-0 shrink-0 basis-36 flex flex-col items-center gap-y-2">
+        <div className="flex justify-center items-center w-12 h-12 rounded-full bg-white overflow-hidden">
+          <Image 
+            src={company.logo_path
+              ? `${baseImgUrl}${company.logo_path}`
+              : "https://img.freepik.com/free-vector/illustration-camera-icon_53876-5563.jpg?w=826&t=st=1669206703~exp=1669207303~hmac=e0ba54cf4b5f844ef289b9c724bff39926c0c8dc2edd8b2738308d66d89f7733"
+            }
+            alt={company.name}
+            width={50}
+            height={50}
+            className="w-full" 
+            />
+        </div>
+        <p className="text-xs md:text-sm font-bold"> {company.name} </p>
+      </div>
+    )
+  })
+
+  const similarMovies = results.results.map((similar) => {
+    return <SimilarMoviesCard key={similar.id} movie={similar} />
+  })
 
   if(!data) {
     return notFound();
@@ -59,29 +91,28 @@ const Details = async ({ id }: { id: string }) => {
           <p className="text-xl mb-4 italic font-semibold lg:text-2xl"> {data.tagline} </p>
           <p className="text-base/5"> {data.overview} </p>
           <div className="flex flex-wrap justify-center text-center gap-x-4 my-4 lg:my-8">
-            Companies Goes Here Brrrrr
+            {companies}
           </div>
         </div>
 
         {/* Cast */}
         <div className="px-4 mb-8 xl:p-0">
           <h3 className="text-2xl underline sm:text-3xl"> Cast {`>`}</h3>
-          <div className="flex gap-x-4 overflow-y-hidden overflow-x-auto py-4">
-            Casts Goes Here
-          </div>
+          {/* @ts-expect-error Server Component */}
+          <MovieCast id={data.id} />
         </div>
 
         {/* Similar */}
         <div className="px-4 mb-8 xl:p-0">
-          <h3 className="text-2xl underline sm:text-3xl"> Cast {`>`}</h3>
+          <h3 className="text-2xl underline sm:text-3xl"> Similar Movies {`>`}</h3>
           <div className="flex gap-x-4 overflow-y-hidden overflow-x-auto py-4">
-            Similar Movies Goes Here
+            {similarMovies}
           </div>
         </div>
 
         {/* GoBackBtn */}
         <div>
-          <button className="bg-transparent border-[0.5px] border-gray-500 py-2 px-4 rounded-md text-white text-xl cursor-pointer hover:opacity-70"></button>
+          <GoBackBtn />
         </div>
       </div>
     </section>
