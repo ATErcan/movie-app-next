@@ -5,7 +5,7 @@ const MovieCast = async ({ id }: { id: number }) => {
   const { cast }: { cast: MovieCast[]} = await getData(`${baseUrl}movie/${id}/credits?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&language=en-US`)
 
   return (
-    <div className="flex gap-x-4 overflow-y-hidden overflow-x-auto py-4">
+    <div className="flex gap-x-4 overflow-y-hidden overflow-x-auto scroll-bar py-4">
       {cast?.map((person) => {
         return (
           <div key={person.cast_id} className="flex flex-col items-center text-center grow-0 shrink-0 basis-auto h-auto gap-y1.5">

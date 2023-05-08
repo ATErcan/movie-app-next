@@ -44,12 +44,16 @@ const MovieGroups: React.FC<IGroup> = ({ group }) => {
 
   return (
     <>
-      <div className="flex gap-x-4 overflow-y-hidden overflow-x-scroll">
+      <div className="flex gap-x-4 overflow-y-hidden overflow-x-scroll scroll-bar">
         {movies}
       </div>
-      <Preview movie={moviePreview} showPreview={showPreview} previewRef={previewRef} />
+      <Preview
+        movie={moviePreview}
+        showPreview={showPreview}
+        previewRef={previewRef}
+      />
     </>
-  )
+  );
 }
 
 export default MovieGroups;

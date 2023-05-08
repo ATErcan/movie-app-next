@@ -101,7 +101,7 @@ const Details = async ({ id }: { id: string }) => {
         {/* Similar */}
         {results.results.length > 0 && <div className="px-4 mb-8 xl:p-0">
           <h3 className="text-2xl underline sm:text-3xl"> Similar Movies {`>`}</h3>
-          <div className="flex gap-x-4 overflow-y-hidden overflow-x-auto py-4">
+          <div className="flex gap-x-4 overflow-y-hidden overflow-x-auto scroll-bar py-4">
             {similarMovies}
           </div>
         </div>}

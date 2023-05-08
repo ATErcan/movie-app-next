@@ -65,8 +65,17 @@ const MoviesAppBar = ({ toggleDrawer }: IAppBar) => {
       <Button className="text-white p-0" onClick={toggleDrawer(true)}>
         <BiMenu className="text-3xl hover:opacity-90" />
       </Button>
-      <Container maxWidth="xl" className="mr-0">
-        <Toolbar disableGutters className={`flex ${segment.length > 1 ? "justify-between" : "justify-end"}`}>
+      <Container
+        maxWidth={false}
+        style={{ maxWidth: "2000px" }}
+        className="mr-0"
+      >
+        <Toolbar
+          disableGutters
+          className={`flex ${
+            segment.length > 1 ? "justify-between" : "justify-end"
+          }`}
+        >
           {segment.length > 1 && (
             <>
               <Typography
@@ -108,14 +117,21 @@ const MoviesAppBar = ({ toggleDrawer }: IAppBar) => {
               </Typography>
             </>
           )}
-          
+
           {user && (
             <div className="flex md:justify-end md:items-center md:gap-x-4 md:text-xl">
-              {segment.length > 1 && <h2 className="hidden md:block cursor-default">{user.user_metadata.firstName}</h2>}
+              {segment.length > 1 && (
+                <h2 className="hidden md:block cursor-default">
+                  {user.user_metadata.firstName}
+                </h2>
+              )}
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt={user.user_metadata.firstName[0]} src="/images/avatar.png" />
+                    <Avatar
+                      alt={user.user_metadata.firstName[0]}
+                      src="/images/avatar.png"
+                    />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -135,9 +151,17 @@ const MoviesAppBar = ({ toggleDrawer }: IAppBar) => {
                   onClose={handleCloseUserMenu}
                 >
                   {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu} disableGutters>
-                      <Typography textAlign="center" className="px-4" onClick={signOut}>                      
-                          {setting}
+                    <MenuItem
+                      key={setting}
+                      onClick={handleCloseUserMenu}
+                      disableGutters
+                    >
+                      <Typography
+                        textAlign="center"
+                        className="px-4"
+                        onClick={signOut}
+                      >
+                        {setting}
                       </Typography>
                     </MenuItem>
                   ))}
