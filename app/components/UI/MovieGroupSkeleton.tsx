@@ -15,7 +15,7 @@ const MovieGroupSkeleton = () => {
           </div>
         ))}
         <div
-            className="flex flex-col grow-0 shrink-0 basis-auto relative w-48 h-72 md:h-96 md:w-60 xl:w-64 bg-gradient-to-r from-gray-900 to-gray-700 animate-pulse duration-2 ease-in-out"
+          className="flex flex-col grow-0 shrink-0 basis-auto relative w-48 h-72 md:h-96 md:w-60 xl:w-64 bg-gradient-to-r from-gray-900 to-gray-700 animate-pulse duration-2 ease-in-out"
           >
           </div>
       </div>

@@ -20,7 +20,7 @@ const roboto = Roboto({
 const Details = async ({ id }: { id: string }) => {
   const details = getData(`${baseUrl}movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`);
   const similar = getData(`${baseUrl}movie/${id}/similar?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}&language=en-US`);
-  const [data, results]: [data: MovieDetails, results: MovieResponse] = await Promise.all([details, similar])
+  const [data, results]: [data: MovieDetails, results: MovieResponse] = await Promise.all([details, similar]).catch(error => notFound());
 
   const companies = data.production_companies.map((company) => {
     return (

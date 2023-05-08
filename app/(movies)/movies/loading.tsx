@@ -1,7 +1,7 @@
 import CarouselSkeleton from "@/app/components/UI/CarouselSkeleton"
 import MovieGroupSkeleton from "@/app/components/UI/MovieGroupSkeleton";
 
-const Loading = () => {
+const Loading = async () => {
   return (
     <>
       <CarouselSkeleton />
