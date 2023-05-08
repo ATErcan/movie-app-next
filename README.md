@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Movie App with Next.js 13
 
-First, run the development server:
+<aTe>MovieDatabase is here with its new version. There is now a movie search option. Moreover, it has been renewed using next.js, so it is much faster and user friendly.
+## Authors
 
+- [@ATErcan](https://www.github.com/ATErcan)
+All codes in this project are written by me.
+
+
+## Tech Stack
+
+HTML, CSS, Typescript, React, Next.js, Tailwind, Supabase, Material UI, React-Hot-Toast, React-Material-UI-Carousel, React-Spinners
+
+
+## Demo
+
+https://atemdb-next.vercel.app/
+
+
+## Installation
+First clone the project
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  $ git clone https://github.com/ATErcan/movie-app-next.git
 ```
+Install my-project with npm
+```bash
+  npm install
+  npm run dev
+```
+    
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ate-portfolio-next.vercel.app/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmet-talha-ercan/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Lessons Learned
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+Next.js 13 comes into our lives with many conveniences. However, since many of its features are still in the experimental phase, the number of errors you may encounter may be quite high. 
+But I can truly say that next.js 13, once built on solid foundations, will drastically change the world of web development.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Related
 
-To learn more about Next.js, take a look at the following resources:
+Here are some related projects
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[MovieApp](https://github.com/ATErcan/movie-app)
+[Clarusway - Movie App](https://github.com/clarusway/clarusway-full-stack-tr-12-22/tree/main/react/projects/006-Movie-App)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Appendix
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+error - SyntaxError: Unexpected token u in JSON at position 0 at JSON.parse (<anonymous>)
+
+If you see this error on your console for no reason, I want you to know that there is no solution for this. Just sit back and wait for an update. Or switch back to src dir.
+
