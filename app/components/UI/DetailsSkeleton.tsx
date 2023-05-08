@@ -12,7 +12,6 @@ const DetailsSkeleton = () => {
           <div className="w-full h-80 md:w-2/3 lg:w-4/5 lg:h-96 loading-shimmer animate-pulse"></div>
         </div>
 
-        {/* Details */}
         <div className="flex flex-col p-4 md:py-4 md:px-8 xl:py-8 xl:px-0">
           <div className="flex flex-wrap my-1 gap-x-2">
             {Array.from({ length: 3 }).map((item, i) => (
@@ -36,7 +35,6 @@ const DetailsSkeleton = () => {
           </div>
         </div>
 
-        {/* Cast */}
         <div className="px-4 mb-8 xl:p-0">
           <div className="w-64 h-8 loading-shimmer animate-pulse"></div>
           <div className="flex gap-x-4 overflow-y-hidden overflow-x-auto py-4">
@@ -65,7 +63,6 @@ const DetailsSkeleton = () => {
           </div>
         </div>
 
-        {/* GoBackBtn */}
         <div className="px-4 xl:p-0">
           <button className="w-24 h-7 cursor-default py-2 px-4 rounded-md loading-shimmer animate-pulse"></button>
         </div>

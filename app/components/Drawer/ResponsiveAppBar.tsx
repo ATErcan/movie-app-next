@@ -84,7 +84,7 @@ const ResponsiveAppBar = ({ toggleDrawer }: IAppBar) => {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },

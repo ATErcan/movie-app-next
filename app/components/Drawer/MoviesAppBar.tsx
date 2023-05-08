@@ -18,7 +18,6 @@ import { useAuth } from "../Supabase/auth-provider";
 import { useSupabase } from "../Supabase/supabase-provider";
 import { toastError, toastSuccess } from "../Toast/ToastNotify";
 import {
-  usePathname,
   useRouter,
   useSelectedLayoutSegments,
 } from "next/navigation";
@@ -92,7 +91,7 @@ const MoviesAppBar = ({ toggleDrawer }: IAppBar) => {
                 variant="h5"
                 noWrap
                 component="a"
-                href=""
+                href="/"
                 sx={{
                   mr: 2,
                   display: { xs: "flex", md: "none" },

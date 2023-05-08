@@ -25,7 +25,6 @@ const TemporaryDrawer = () => {
       ) {
         return;
       }
-
       setState(open);
     };
 

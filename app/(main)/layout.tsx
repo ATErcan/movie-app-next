@@ -12,7 +12,6 @@ export default function MainLayout({
 }) {
   return (
     <html lang="en">
-      <link rel="icon" href="/movie.png" sizes="32x32" />
       <body>
         <TemporaryDrawer />
         {children}
