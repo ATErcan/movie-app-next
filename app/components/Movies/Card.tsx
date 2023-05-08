@@ -28,7 +28,7 @@ const Card = ({
 
   return (
     <div
-      className={`flex flex-col grow-0 shrink-0 basis-auto overflow-y-hidden relative w-48 h-auto cursor-pointer ${classes} md:w-60 xl:w-64`}
+      className={`flex flex-col grow-0 shrink-0 basis-auto overflow-y-hidden relative w-48 h-auto cursor-pointer ${classes} md:w-60 xl:w-64 justify-center`}
       onMouseOver={() => setShowTitle(true)}
       onMouseOut={() => setShowTitle(false)}
       onClick={handleClick}

@@ -32,7 +32,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(() => {
       currentUser();
-      console.log(user);
       router.refresh();
     });
 

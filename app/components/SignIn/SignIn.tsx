@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { useSupabase } from "../Supabase/supabase-provider";
 import { toastError, toastSuccess } from "../Toast/ToastNotify";
 import LoadingBtn from "../UI/LoadingBtn";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
   const { supabase } = useSupabase();
@@ -22,6 +23,7 @@ const SignIn = () => {
     password: ""
   })
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginData(prevLoginData => {
@@ -42,13 +44,12 @@ const SignIn = () => {
     if (error) {
       toastError(error.message);
     } else {
+      router.push("/movies");
       toastSuccess("Signed In Successfully!");
     }
     setLoading(false);
     setLoginData({email: "", password: ""});
   };
-
-  console.log(loginData);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

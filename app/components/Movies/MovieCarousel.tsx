@@ -7,12 +7,13 @@ import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import Genres from "./Genres";
 import { useRouter } from "next/navigation";
+import { AiFillStar } from "react-icons/ai";
 
-function Item({ movie, genres }: { movie: MovieData, genres: GenreData[] }) {
+function Item({ movie, genres }: { movie: MovieData; genres: GenreData[] }) {
   const router = useRouter();
 
-  const genreNames = movie.genre_ids.map(id => {
-    const genre = genres.find(genre => genre.id === id);
+  const genreNames = movie.genre_ids.map((id) => {
+    const genre = genres.find((genre) => genre.id === id);
     return genre;
   });
 
@@ -27,15 +28,26 @@ function Item({ movie, genres }: { movie: MovieData, genres: GenreData[] }) {
         />
       </div>
 
-      <div className="flex flex-col gap-y-4 p-4 bg-black text-white sm:absolute sm:top-1/2 sm:transform sm:-translate-y-1/2  sm:bg-transparent sm:p-8 xl:pl-16">
-        <Genres genres={genreNames} containerStyle="gap-x-3 gap-y-2" itemStyle="px-3 py-2 bg-gray-500 bg-opacity-30 rounded-3xl text-xs sm:text-base sm:backdrop-blur-lg xl:text-xl xl:py-3 xl:px-4 2xl:text-2xl" />
+      <div className="flex flex-col gap-y-2 p-4 bg-black text-white sm:absolute sm:top-1/2 sm:transform sm:-translate-y-1/2  sm:bg-transparent sm:p-8 xl:pl-16">
+        <Genres
+          genres={genreNames}
+          containerStyle="gap-x-3 gap-y-2"
+          itemStyle="px-3 py-2 bg-gray-500 bg-opacity-30 rounded-3xl text-xs sm:text-base sm:backdrop-blur-lg xl:text-xl xl:py-3 xl:px-4 2xl:text-2xl"
+        />
         <h2 className="text-3xl sm:text-4xl xl:text-5xl 2xl:text-6xl">
           {movie.title}
         </h2>
-        <p className="max-w-max p-2 bg-yellow-500 font-bold text-gray-500 shadow sm:p-2.5 sm:text-xl xl:text-2xl 2xl:text-3xl">
+        <div className="flex justify-center items-center relative p-0 w-max">
+          <AiFillStar className="text-5xl sm:text-6xl xl:text-7xl text-yellow-500 p-0" />
+          <p className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 max-w-max font-bold text-gray-500 text-sm sm:text-base xl:text-xl m-0 p-0">
           {movie.vote_average.toFixed(1)}
-        </p>
-        <button className="bg-white text-black border-none rounded-2xl w-32 py-1 cursor-pointer hover:opacity-80 sm:py-1.5 sm:w-36 2xl:text-base" onClick={() => router.push(`/movies/details/${movie.id}`)}>
+          </p>
+        </div>
+
+        <button
+          className="bg-white text-black border-none rounded-2xl w-32 py-1 cursor-pointer hover:opacity-80 sm:py-1.5 sm:w-36 2xl:text-base"
+          onClick={() => router.push(`/movies/details/${movie.id}`)}
+        >
           See Details
         </button>
       </div>
@@ -54,8 +66,10 @@ const MovieCarousel = () => {
       .then((res) => setMovies(res.results))
       .catch((error) => console.log(error));
     getData(
-        `${baseUrl}genre/movie/list?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`
-    ).then(res => setGenres(res.genres)).catch(error => console.log(error));
+      `${baseUrl}genre/movie/list?api_key=${process.env.NEXT_PUBLIC_TMDB_KEY}`
+    )
+      .then((res) => setGenres(res.genres))
+      .catch((error) => console.log(error));
   }, []);
 
   const items = movies.filter((movie, i) => i < 5);

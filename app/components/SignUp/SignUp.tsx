@@ -46,6 +46,7 @@ const SignUp = () => {
         },
       },
     });
+    console.log(error)
 
     if (error) {
       toastError(error.message);

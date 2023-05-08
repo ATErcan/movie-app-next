@@ -18,7 +18,8 @@ import { useAuth } from "../Supabase/auth-provider";
 import { useSupabase } from "../Supabase/supabase-provider";
 import { toastError, toastSuccess } from "../Toast/ToastNotify";
 import {
-  useSelectedLayoutSegment,
+  usePathname,
+  useRouter,
   useSelectedLayoutSegments,
 } from "next/navigation";
 
@@ -33,6 +34,7 @@ interface IAppBar {
 const MoviesAppBar = ({ toggleDrawer }: IAppBar) => {
   const { user } = useAuth();
   const { supabase } = useSupabase();
+  const router = useRouter();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const segment = useSelectedLayoutSegments();
 
@@ -49,6 +51,7 @@ const MoviesAppBar = ({ toggleDrawer }: IAppBar) => {
     if (error) {
       toastError(error.message);
     } else {
+      router.push("/login");
       toastSuccess("Logged Out Successfully!");
     }
   };

@@ -17,6 +17,7 @@ import { BiMenu } from "react-icons/bi";
 import { useAuth } from "../Supabase/auth-provider";
 import { useSupabase } from "../Supabase/supabase-provider";
 import { toastError, toastSuccess } from "../Toast/ToastNotify";
+import { useRouter } from "next/navigation";
 
 const settings = ["Logout"];
 
@@ -29,6 +30,8 @@ interface IAppBar {
 const ResponsiveAppBar = ({ toggleDrawer }: IAppBar) => {
   const { user } = useAuth();
   const { supabase } = useSupabase();
+  const router = useRouter();
+  
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -43,6 +46,7 @@ const ResponsiveAppBar = ({ toggleDrawer }: IAppBar) => {
     if (error){
       toastError(error.message);
     } else {
+      router.push("/login");
       toastSuccess("Logged Out Successfully!");
     }
   };

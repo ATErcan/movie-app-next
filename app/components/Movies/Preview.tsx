@@ -3,6 +3,7 @@ import Image from "next/image";
 import { RefObject, useEffect, useState } from "react";
 import Genres from "./Genres";
 import { useRouter } from "next/navigation";
+import { AiFillStar } from "react-icons/ai";
 
 const Preview = ({
   movie,
@@ -49,9 +50,12 @@ const Preview = ({
           <h2 className="overflow-visible text-3xl sm:text-xl md:text-2xl lg:text-3xl">
             {movie?.title}
           </h2>
-          <p className="max-w-max p-2 bg-yellow-500 font-bold text-gray-500 shadow sm:p-1 sm:text-sm xl:text-base">
-            {movie?.vote_average?.toFixed(1)}
+          <div className="flex justify-center items-center relative p-0 w-max">
+            <AiFillStar className="text-5xl sm:text-5xl xl:text-6xl text-yellow-500 p-0" />
+            <p className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 max-w-max font-bold text-gray-500 text-sm xl:text-base m-0 p-0">
+            {movie?.vote_average.toFixed(1)}
           </p>
+        </div>
         </div>
         <p className="xs:text-xs sm:text-sm sm:w-4/6 md:w-3/5 xl:text-base xl:w-1/2 2xl:text-lg 2xl:w-2/5">
           {movie?.overview}

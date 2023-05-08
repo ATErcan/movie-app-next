@@ -80,7 +80,7 @@ type MovieDetails = {
   original_title: string;
   overview: string;
   popularity: number;
-  poster_path: string;
+  poster_path: string | null;
   production_companies: CompanyData[];
   production_countries: { iso_3166_1: string; name: string }[];
   release_date: string;
