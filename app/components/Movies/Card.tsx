@@ -1,6 +1,6 @@
 "use client";
 
-import { baseImgUrl } from "@/assets/tmdb";
+import { baseImgUrl } from "@/app/assets/tmdb";
 import Image from "next/image";
 import { useState } from "react";
 

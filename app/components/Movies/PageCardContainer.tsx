@@ -1,4 +1,4 @@
-import { baseUrl, getData } from "@/assets/tmdb";
+import { baseUrl, getData } from "@/app/assets/tmdb";
 import GroupPageCard from "./GroupPageCard";
 
 

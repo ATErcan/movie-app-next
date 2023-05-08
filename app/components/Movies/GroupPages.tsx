@@ -1,7 +1,7 @@
 "use client";
 
-import { baseUrl } from "@/assets/tmdb";
-import { getData } from "@/assets/tmdb";
+import { baseUrl } from "@/app/assets/tmdb";
+import { getData } from "@/app/assets/tmdb";
 import { useEffect, useRef, useState } from "react";
 import GroupPageCard from "./GroupPageCard";
 import NavigationBtns from "../UI/NavigationBtns";

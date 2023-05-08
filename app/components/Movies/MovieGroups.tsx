@@ -1,6 +1,6 @@
 'use client';
 
-import { baseUrl, getData } from "@/assets/tmdb";
+import { baseUrl, getData } from "@/app/assets/tmdb";
 import MovieCard from "./MovieCard";
 import { useEffect, useRef, useState } from "react";
 import Preview from "./Preview";

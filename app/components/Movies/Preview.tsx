@@ -1,4 +1,4 @@
-import { baseImgUrl, baseUrl, getData } from "@/assets/tmdb";
+import { baseImgUrl, baseUrl, getData } from "@/app/assets/tmdb";
 import Image from "next/image";
 import { RefObject, useEffect, useState } from "react";
 import Genres from "./Genres";

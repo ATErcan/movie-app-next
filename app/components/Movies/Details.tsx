@@ -1,5 +1,5 @@
-import { baseImgUrl, baseUrl } from "@/assets/tmdb"
-import { getData } from "@/assets/tmdb"
+import { baseImgUrl, baseUrl } from "@/app/assets/tmdb"
+import { getData } from "@/app/assets/tmdb"
 import { Roboto } from "next/font/google"
 import { notFound } from "next/navigation"
 import { AiFillStar } from "react-icons/ai"

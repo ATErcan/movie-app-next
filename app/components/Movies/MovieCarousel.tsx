@@ -1,6 +1,6 @@
 "use client";
 
-import { baseImgUrl, baseUrl, getData } from "@/assets/tmdb";
+import { baseImgUrl, baseUrl, getData } from "@/app/assets/tmdb";
 import { Paper } from "@mui/material";
 import Image from "next/image";
 import { useEffect, useState } from "react";

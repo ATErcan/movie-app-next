@@ -1,4 +1,4 @@
-import { baseImgUrl, baseUrl, getData } from "@/assets/tmdb";
+import { baseImgUrl, baseUrl, getData } from "@/app/assets/tmdb";
 import Image from "next/image";
 
 const Video = ({ results, title, error }: { results: MovieVideo[] | [], title: string, error: boolean }) => {
